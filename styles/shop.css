@@ -70,7 +70,7 @@ input:focus{
     border: none;
     outline: none;
 }
-.shopItem button, #header button{
+.shopItem button, #header button, #cart button{
     display: inline-block;
     background: #00ae42;
     border: none;

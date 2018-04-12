@@ -5,7 +5,8 @@ settings = {
     'showOutOfStockItems': true,
     'allowMultipleOrder': true,
     'showDescription': false,
-    'currencyUnits': '₹'
+    'currencyUnits': '₹',
+    'shopPhoneNumber': '8310786727'
 }
 
 
@@ -24,7 +25,7 @@ function initShop(){
 }
 function loadShop(loadedProducts,tabletop) {
     for(i=0;i<loadedProducts.length;i++){
-        loadedProducts[i]['orderQuanity'] = 0;
+        loadedProducts[i]['orderQuantity'] = 0;
         if(loadedProducts[i]['In Stock'].toLowerCase().trim() == 'yes'){
             loadedProducts[i]['In Stock'] = true;
         }
@@ -69,7 +70,7 @@ function setupShop(){
             totalAmount: function(){
                 total = 0
                 for(i=0;i<products.length;i++){
-                    total += products[i]['orderQuanity'] * products[i]['Unit Price']
+                    total += products[i]['orderQuantity'] * products[i]['Unit Price']
                 }
                 return total
             }
@@ -86,7 +87,7 @@ function setupShop(){
             totalAmount: function(){
                 total = 0
                 for(i=0;i<products.length;i++){
-                    total += products[i]['orderQuanity'] * products[i]['Unit Price']
+                    total += products[i]['orderQuantity'] * products[i]['Unit Price']
                 }
                 return total
             }
@@ -97,4 +98,24 @@ function setupShop(){
 }
 function scrollToCart(){
     document.getElementById('cart').scrollIntoView({behavior:'smooth',block:'end'})
+}
+function placeOrder(){
+    ordertext = 'Hi, I would like to place an order for the following items from ' + location.hostname + ".\n\n"
+    total = 0
+    n = 0
+    for(i=0;i<products.length;i++){
+        if(products[i]['orderQuantity']>0){
+            n += 1
+            ordertext += n.toString() + ') ' + products[i]['Name'] + '\n'
+            if(settings.allowMultipleOrder){
+                ordertext += 'Quantity: ' + products[i]['orderQuantity'] + '\n'
+            }
+            price = parseInt(products[i]['orderQuantity']) * parseFloat(products[i]['Unit Price'])
+            total += price
+            ordertext += 'Price: ' + settings.currencyUnits + price.toString() + '\n\n'
+        }
+    }
+    ordertext += 'Total Amount: ' + settings.currencyUnits + total.toString();
+    orderlink = 'https://api.whatsapp.com/send?phone=' + settings.shopPhoneNumber + '&text=' + encodeURIComponent(ordertext);
+    location.href = orderlink;
 }

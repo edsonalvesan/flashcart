@@ -61,13 +61,13 @@
             </p>
             <br>
             <p class="cartButtons" v-if="product['In Stock']">
-                <i v-if="product.orderQuanity > 0 && !settings.allowMultipleOrder">Added to Cart</i><br>
-                <button v-if="product.orderQuanity == 0" v-on:click="product.orderQuanity++"> Add To Cart </button>
-                <button class="red" v-if="product.orderQuanity > 0 && settings.allowMultipleOrder" v-on:click="product.orderQuanity--"> -1 </button>
-                <input min=0 type=number v-if="product.orderQuanity > 0 && settings.allowMultipleOrder" v-model.number="product.orderQuanity" @change="if(product.orderQuanity<0) product.orderQuanity = 0">
-                <button v-if="product.orderQuanity > 0 && settings.allowMultipleOrder" v-on:click="product.orderQuanity++"> +1 </button>
+                <i v-if="product.orderQuantity > 0 && !settings.allowMultipleOrder">Added to Cart</i><br>
+                <button v-if="product.orderQuantity == 0" v-on:click="product.orderQuantity++"> Add To Cart </button>
+                <button class="red" v-if="product.orderQuantity > 0 && settings.allowMultipleOrder" v-on:click="product.orderQuantity--"> -1 </button>
+                <input min=0 type=number v-if="product.orderQuantity > 0 && settings.allowMultipleOrder" v-model.number="product.orderQuantity" @change="if(product.orderQuantity<0) product.orderQuantity = 0">
+                <button v-if="product.orderQuantity > 0 && settings.allowMultipleOrder" v-on:click="product.orderQuantity++"> +1 </button>
                 <br>
-                <button class="red" v-if="product.orderQuanity > 0" v-on:click="product.orderQuanity=0"> Remove from Cart</button>
+                <button class="red" v-if="product.orderQuantity > 0" v-on:click="product.orderQuantity=0"> Remove from Cart</button>
             </p>
             <span class="outOfStock" v-else>
                 Out Of Stock
@@ -88,11 +88,11 @@
                 <th>Price</th>
                 <th></th>
             </tr>
-            <tr class="cartItem" v-for="product in products" v-if="product.orderQuanity>0">
+            <tr class="cartItem" v-for="product in products" v-if="product.orderQuantity>0">
                 <td>{{ product.Name }}</td>
-                <td v-if="settings.allowMultipleOrder">{{product.orderQuanity}}</td>
-                <td>{{ settings.currencyUnits }}{{ product.orderQuanity*product['Unit Price']}}</td>
-                <td><button v-on:click="product.orderQuanity=0"> Remove </button></td>
+                <td v-if="settings.allowMultipleOrder">{{product.orderQuantity}}</td>
+                <td>{{ settings.currencyUnits }}{{ product.orderQuantity*product['Unit Price']}}</td>
+                <td><button v-on:click="product.orderQuantity=0"> Remove </button></td>
             </tr>
             <tr>
                 <th>Total</th>
@@ -100,6 +100,8 @@
                 <th>{{ settings.currencyUnits }}{{ totalAmount }}</th>
                 <th></th>
         </table>
+        <br>
+        <button v-if="totalAmount > 0" style="margin-bottom: 5mm;" onclick="placeOrder()">Click to place order on WhatsApp</button>
     </div>
 
 </body>
