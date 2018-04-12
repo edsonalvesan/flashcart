@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title>FlashCart</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png" sizes="16x16">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/grid.css">
+    <script>
+        menuDropped = false;
+        function toggleMenu(){
+            if(menuDropped){
+                document.getElementById('links').style.display = 'none'
+                menuDropped = false;
+            }
+            else{
+                document.getElementById('links').style.display = 'inline-block'
+                menuDropped = true;
+            }
+        }
+    </script>
+</head>
+<body style="background: url(assets/bg.jpg); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div id="header">
+        <a href="index.html">
+            <img src="assets/logo.png" style="height: 7mm; margin: 1.5mm;">
+        </a>
+        <img src="assets/menu.png" id="menubtn" onclick=toggleMenu() style="height: 7mm; width: 12mm; margin: 2mm; margin-top: 3.5mm;">
+        <div id="links">
+            <a href="shop.html">Demo Shop</a>
+            <a href="github.html">GitHub</a>
+            <a href="contact.html">Contact</a>
+            <a href="donate.html">Donate</a>
+        </div>
+    </div>
+    <div class="row r1" style="color: #ffffff; padding-top: 2cm; padding-bottom: 2cm;">
+        <div class="col c1" style="text-align: center;">
+            <img src="assets/logo.png" style="height: 10mm; margin: 3mm;">
+            <br><br>
+            Set up a simple WhatsApp shop in a flash!
+        </div>
+    </div>
+    <div class="row r4" style="background: rgba(0,0,0,0.5);">
+        <div class="col c1 hide"> </div>
+        <div class="col c2" style="text-align: center; color: #ffffff;">
+            <h1>What is FlashCart?</h1>
+            FlashCart is a mobile friendly shopping cart template for your online store.
+            <br><br>
+            It can be customized for your business and is very easy to manage.
+            <br><br>
+        </div>
+        <div class="col c1 hide"> </div>
+    </div>
+    <div class="row r2" style="background: #e0e0e0;">
+        <img class="col c1 hide" src="assets/small.jpg">
+        <div class="col c1">
+            <h1> Made with ♥ for small businesses </h1>
+            <br>
+            <span style="color: #00ae42; margin-right: 1mm; font-size: 150%; vertical-align: -1mm;">♥</span>
+            Orders are notified to your WhatsApp/WhatsApp Business numbers.
+            <br><br>
+            <span style="color: #00ae42; margin-right: 1mm; font-size: 150%; vertical-align: -1mm;">♥</span>
+            Manage your inventory with Google Sheets.
+            <br><br>
+            <span style="color: #00ae42; margin-right: 1mm; font-size: 150%; vertical-align: -1mm;">♥</span>
+            Can be setup within a day for a small fee.
+            <br><br>
+            <span style="color: #00ae42; margin-right: 1mm; font-size: 150%; vertical-align: -1mm;">♥</span>
+            The code is open source :)
+            <br><br>
+        </div>
+    </div>
+    <div class="row r4" style="background: rgba(0,0,0,1.0);">
+        <div class="col c1" style="text-align: center; padding: 10% 5%; color: #ffffff;">
+            Check out the shop!<br><br>
+            <a class="btn" href="shop.html">Demo</a>
+        </div>
+        <div class="col c1" style="text-align: center; padding: 10% 5%; color: #ffffff;">
+            Want to have it setup for your business?<br><br>
+            <a class="btn" href="contact.html">Get in touch</a>
+        </div>
+        <div class="col c1" style="text-align: center; padding: 10% 5%; color: #ffffff;">
+            The code is open source :) <br><br>
+            <a class="btn" href="contact.html">View code on GitHub</a>
+        </div>
+        <div class="col c1" style="text-align: center; padding: 10% 5%; color: #ffffff;">
+            Found this useful? Buy me a Biriyani! <br><br>
+            <a class="btn" href="contact.html">Donate</a>
+        </div>
+    </div>
+</body>

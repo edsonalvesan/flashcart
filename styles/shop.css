@@ -1,0 +1,146 @@
+body{
+    background: #e0e0e0;
+}
+#shop{
+    padding: 2mm;
+    padding-top: 27mm;
+    display: none;
+    grid-template-columns: repeat(12,1fr);
+    background: #e0e0e0;
+    grid-gap: 2mm;
+}
+.shopItem{
+    display: inline-block;
+    text-align: left;
+    grid-column: span 3;
+    padding: 2mm;
+    background: #ffffff;
+    border-bottom: 1mm solid #00ae42;
+}
+.shopItem img{
+    width: 100%;
+}
+.shopItem span{
+    display: inline-block;
+}
+.shopItem .productName{
+    color: #00ae42;
+    padding-top: 2mm;
+}
+.shopItem .priceContainer{
+    background: none;
+    border: 0.25mm solid #00ae42;
+    color: #00ae42;
+    font-size: 80%;
+    padding: 1mm 2mm;
+    border-radius: 0.7mm;
+}
+.shopItem .description{
+    text-align: left;
+}
+.shopItem .outOfStock{
+    background: none;
+    border: 0.25mm solid #ae2121;
+    color: #ae2121;
+    font-size: 80%;
+    padding: 1mm 2mm;
+    border-radius: 0.7mm;
+}
+.shopItem .cartButtons{
+    width: 100%;
+    text-align: center;
+    margin: 0mm;
+}
+.shopItem input{
+    display: inline-block;
+    width: 10mm;
+    text-align: center;
+    border: none;
+    font-size: 80%;
+    padding: 1mm 2mm;
+    margin: 1mm 0mm 0.5mm 0mm;
+    border-bottom: 0.5mm solid #00ae42;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input:focus{
+    border: none;
+    outline: none;
+}
+.shopItem button, #header button{
+    display: inline-block;
+    background: #00ae42;
+    border: none;
+    font-family: inherit;
+    color: #ffffff;
+    font-size: 80%;
+    padding: 1mm 2mm;
+    border-radius: 0.7mm;
+    margin: 1mm 0mm;
+}
+.shopItem button.red{
+    background: #ae2121;
+}
+
+#cart{
+    display: none;
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+}
+
+#cart table{
+    width: 100%;
+    padding: 3mm;
+}
+#cart th, #cart td{
+    text-align: center;
+    padding: 1mm;
+}
+#cart th:first-child, #cart td:first-child{
+    text-align: left;
+}
+#cart td button{
+    background: #00ae42;
+    border: none;
+    font-family: inherit;
+    color: #ffffff;
+    font-size: 80%;
+    padding: 1mm 2mm;
+    border-radius: 0.7mm;
+}
+
+#categoryChooser{
+    font-family: msl;
+    width: 100%;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 2mm;
+    font-size: 80%;
+}
+#categoryChooser:focus{
+    border: none;
+    outline: none;
+}
+#categoryChooser option{
+    background: #000000;
+}
+@media only screen and (max-width: 840px) {
+    .shopItem{
+        grid-column: span 4;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .shopItem{
+        grid-column: span 6;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .shopItem{
+        grid-column: span 12;
+    }
+}

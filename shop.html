@@ -1,0 +1,105 @@
+<html>
+<head>
+    <title>FlashCart</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png" sizes="16x16">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/grid.css">
+    <link rel="stylesheet" type="text/css" href="styles/shop.css">
+    <script src="scripts/tabletop.min.js"></script>
+    <script src="scripts/vue.min.js"></script>
+    <script src="scripts/shop.js"></script>
+    <script>
+        menuDropped = false;
+        function toggleMenu(){
+            if(menuDropped){
+                document.getElementById('links').style.display = 'none'
+                menuDropped = false;
+            }
+            else{
+                document.getElementById('links').style.display = 'inline-block'
+                menuDropped = true;
+            }
+        }
+    </script>
+</head>
+<body onload="initShop()" onunload="saveShop()">
+    <div id="header" style="position: fixed; background: #000000;">
+        <a href="index.html">
+            <img src="assets/logo.png" style="height: 7mm; margin: 1.5mm;">
+        </a>
+        <img src="assets/menu.png" id="menubtn" onclick=toggleMenu() style="height: 7mm; width: 12mm; margin: 2mm; margin-top: 3.5mm;">
+        <div id="links">
+            <a href="shop.html">Demo Shop</a>
+            <a href="github.html">GitHub</a>
+            <a href="contact.html">Contact</a>
+            <a href="donate.html">Donate</a>
+        </div>
+        <div id="categories">
+            <select id="categoryChooser" v-model="settings.activeCategory">
+                <option value="All">Showing Categories: All</option>
+                <option v-for="category in categories_list" v-bind:value="category">{{ category }}</option>
+            </select>
+        </div>
+        <div id="checkout" style="text-align: right; padding-right: 2mm;">
+            <button onclick="scrollToCart()">Checkout</button>
+        </div>
+    </div>
+    <div id="shop">
+        <div class="shopItem" v-for="product in products" v-if="(product['In Stock'] || settings.showOutOfStockItems) && (settings.activeCategory=='All' || settings.activeCategory == product['Category'])">
+            <img v-bind:src="product.Image">
+            <br>
+            <span class="productName">{{ product.Name }}</span>
+            <br>
+            <p v-if="settings.showDescription" class="description">
+                {{ product.Description }}
+            </p>
+            <br>
+            <p class="priceContainer">
+                <span class="price">{{ settings.currencyUnits }} {{ product['Unit Price'] }}</span>
+                <span v-if="settings.allowMultipleOrder" class="units">/{{ product['Unit Suffix'] }}</span>
+            </p>
+            <br>
+            <p class="cartButtons" v-if="product['In Stock']">
+                <i v-if="product.orderQuanity > 0 && !settings.allowMultipleOrder">Added to Cart</i><br>
+                <button v-if="product.orderQuanity == 0" v-on:click="product.orderQuanity++"> Add To Cart </button>
+                <button class="red" v-if="product.orderQuanity > 0 && settings.allowMultipleOrder" v-on:click="product.orderQuanity--"> -1 </button>
+                <input min=0 type=number v-if="product.orderQuanity > 0 && settings.allowMultipleOrder" v-model.number="product.orderQuanity" @change="if(product.orderQuanity<0) product.orderQuanity = 0">
+                <button v-if="product.orderQuanity > 0 && settings.allowMultipleOrder" v-on:click="product.orderQuanity++"> +1 </button>
+                <br>
+                <button class="red" v-if="product.orderQuanity > 0" v-on:click="product.orderQuanity=0"> Remove from Cart</button>
+            </p>
+            <span class="outOfStock" v-else>
+                Out Of Stock
+            </span>
+        </div>
+    </div>
+    <br>
+    <div id="cart">
+        <h1>Checkout section</h1>
+        <p v-if="totalAmount > 0">Your cart:</p>
+        <p v-else>Your cart is empty</p>
+        <br>
+
+        <table v-if="totalAmount > 0">
+            <tr>
+                <th>Item</th>
+                <th v-if="settings.allowMultipleOrder">Nos.</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            <tr class="cartItem" v-for="product in products" v-if="product.orderQuanity>0">
+                <td>{{ product.Name }}</td>
+                <td v-if="settings.allowMultipleOrder">{{product.orderQuanity}}</td>
+                <td>{{ settings.currencyUnits }}{{ product.orderQuanity*product['Unit Price']}}</td>
+                <td><button v-on:click="product.orderQuanity=0"> Remove </button></td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <th v-if="settings.allowMultipleOrder"></th>
+                <th>{{ settings.currencyUnits }}{{ totalAmount }}</th>
+                <th></th>
+        </table>
+    </div>
+
+</body>

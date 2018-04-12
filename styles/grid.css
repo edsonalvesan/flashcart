@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: msr;
+    src: url(/assets/msr.otf);
+}
+@font-face {
+    font-family: msl;
+    src: url(/assets/msl.otf);
+}
+body{
+    padding: 0px;
+    margin: 0px;
+    font-family: msl;
+    text-align: center;
+    font-size: 4mm;
+}
+.row{
+    display: grid;
+}
+.r1{
+    grid-template-columns: repeat(1,1fr);
+}
+.r2{
+    grid-template-columns: repeat(2,1fr);
+}
+.r3{
+    grid-template-columns: repeat(3,1fr);
+}
+.r4{
+    grid-template-columns: repeat(4,1fr);
+}
+.r5{
+    grid-template-columns: repeat(5,1fr);
+}
+.r6{
+    grid-template-columns: repeat(6,1fr);
+}
+div.col{
+    display: inline-block;
+    text-align: justify;
+    padding: 5%;
+}
+.c1{
+    grid-column: span 1;
+}
+.c2{
+    grid-column: span 2;
+}
+.c3{
+    grid-column: span 3;
+}
+.c4{
+    grid-column: span 4;
+}
+.c5{
+    grid-column: span 5;
+}
+.c6{
+    grid-column: span 6;
+}
+p{
+    display: inline-block;
+    text-align: justify;
+}
+a.btn{
+    display: inline-block;
+    padding: 3mm;
+    border-radius: 1mm;
+    text-decoration: none;
+    background: #00ae42;
+    color: #ffffff;
+    margin: 2mm;
+}
+h1{
+    color: #00ae42;
+    font-size: 150%;
+    font-weight: normal;
+    letter-spacing: 0.5mm;
+}
+#header{
+    background: transparent;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 5cm 1fr;
+}
+#links{
+    display: inline-block;
+    padding: 10px;
+    margin: 0px;
+    text-align: right;
+}
+#header a, #links a{
+    color: #ffffff;
+    display: inline-block;
+    padding: 2mm;
+    text-decoration: none;
+    text-align: left;
+}
+#menubtn{
+    display: none;
+}
+img.col{
+    width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    body{
+        font-family: msl;
+    }
+    #header{
+        text-align: center;
+    }
+    .row{
+        display: block;
+    }
+    div.col{
+        display: block;
+        font-size: 4mm;
+        text-align: left;
+    }
+    #links{
+        display: none;
+        grid-column: span 2;
+    }
+    #links a{
+        display: block;
+        text-align: right;
+    }
+    #menubtn{
+        display: inline;
+        justify-self: end;
+    }
+    .hide{
+        display: none;
+    }
+}
