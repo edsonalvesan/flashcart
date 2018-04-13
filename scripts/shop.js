@@ -4,7 +4,7 @@ InventoryUrl = 'https://docs.google.com/spreadsheets/d/17NjpxU8WEYRAfg7oNkmDJuD5
 settings = {
     'showOutOfStockItems': true,
     'allowMultipleOrder': true,
-    'showDescription': false,
+    'showDescription': true,
     'currencyUnits': '₹',
     'shopPhoneNumber': '918310786727'
 }
@@ -13,7 +13,7 @@ settings = {
 settings.activeCategory = "All";
 
 categories_list = [];
-Vue.config.devtools = true;
+//Vue.config.devtools = true;
 
 function initShop(){
     if(sessionStorage.getItem('storedProducts') == null){
@@ -74,6 +74,11 @@ function setupShop(){
                 }
                 return total
             }
+        },
+        mounted: function() {
+            document.getElementById('loading').style.display = "none";
+            document.getElementById('shop').style.display = "grid";
+            document.getElementById('cart').style.display = "inline-block";
         }
     })
     categoryChooser = new Vue({
@@ -93,8 +98,7 @@ function setupShop(){
             }
         }
     })
-    document.getElementById('shop').style.display = "grid";
-    document.getElementById('cart').style.display = "inline-block";
+
 }
 function scrollToCart(){
     document.getElementById('cart').scrollIntoView({behavior:'smooth',block:'end'})

@@ -30,10 +30,9 @@
         </a>
         <img src="assets/menu.png" id="menubtn" onclick=toggleMenu() style="height: 7mm; width: 12mm; margin: 2mm; margin-top: 3.5mm;">
         <div id="links">
-            <a href="shop.html">Demo Shop</a>
-            <a href="github.html">GitHub</a>
-            <a href="contact.html">Contact</a>
-            <a href="donate.html">Donate</a>
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="https://github.com/kd96/flashcart/">Code</a>
         </div>
         <div id="categories">
             <select id="categoryChooser" v-model="settings.activeCategory">
@@ -44,6 +43,9 @@
         <div id="checkout" style="text-align: right; padding-right: 2mm;">
             <button onclick="scrollToCart()">Checkout</button>
         </div>
+    </div>
+    <div id="loading">
+        Loading shop, please wait...
     </div>
     <div id="shop">
         <div class="shopItem" v-for="product in products" v-if="(product['In Stock'] || settings.showOutOfStockItems) && (settings.activeCategory=='All' || settings.activeCategory == product['Category'])">
@@ -59,7 +61,6 @@
                 <span class="price">{{ settings.currencyUnits }} {{ product['Unit Price'] }}</span>
                 <span v-if="settings.allowMultipleOrder" class="units">/{{ product['Unit Suffix'] }}</span>
             </p>
-            <br>
             <p class="cartButtons" v-if="product['In Stock']">
                 <i v-if="product.orderQuantity > 0 && !settings.allowMultipleOrder">Added to Cart</i><br>
                 <button v-if="product.orderQuantity == 0" v-on:click="product.orderQuantity++"> Add To Cart </button>
