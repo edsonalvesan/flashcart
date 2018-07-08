@@ -9,4 +9,4 @@ Coming soon
 
 # Acknowledgements
 - Contributors of [Vue.js](https://github.com/vuejs/vue)
-- [@jsoma](https://github.com/jsoma) for [Tabletop.js](https://github.com/jsoma)
+- [@jsoma](https://github.com/jsoma) for [Tabletop.js](https://github.com/jsoma/tabletop)
