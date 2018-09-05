@@ -6,7 +6,7 @@ settings = {
     'allowMultipleOrder': true,
     'showDescription': true,
     'currencyUnits': '₹',
-    'shopPhoneNumber': '918310786727'
+    'shopPhoneNumber': '919538065734'
 }
 
 
